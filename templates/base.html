@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeatGuard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="/" class="nav-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="HeatGuard" style="height: 38px; width: 38px; border-radius: 10px; object-fit: cover; object-position: center 20%;">
+        <div class="nav-logo-text">
+            <h1>HeatGuard</h1>
+            <p>Heat Risk Intelligence</p>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="/" class="{{ 'active' if request.path == '/' else '' }}">🏠 Heat risk</a>
+        <a href="/hydration" class="{{ 'active' if request.path == '/hydration' else '' }}">💧 Hydration</a>
+        <a href="/map" class="{{ 'active' if request.path == '/map' else '' }}">🗺️ Cool route</a>
+        <a href="/emergency" class="{{ 'active' if request.path == '/emergency' else '' }}">🚨 Emergency</a>
+    </div>
+
+    <div class="nav-right">
+        <span style="color: #666; font-size: 20px;">🔔</span>
+        <div class="nav-avatar">AK</div>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<nav class="bottom-nav">
+    <a href="/" class="{{ 'active' if request.path == '/' else '' }}">
+        <span style="font-size: 20px;">🏠</span>
+        <span>Heat risk</span>
+    </a>
+    <a href="/hydration" class="{{ 'active' if request.path == '/hydration' else '' }}">
+        <span style="font-size: 20px;">💧</span>
+        <span>Hydration</span>
+    </a>
+    <a href="/map" class="{{ 'active' if request.path == '/map' else '' }}">
+        <span style="font-size: 20px;">🗺️</span>
+        <span>Cool route</span>
+    </a>
+    <a href="/emergency" class="{{ 'active' if request.path == '/emergency' else '' }}">
+        <span style="font-size: 20px;">🚨</span>
+        <span>Emergency</span>
+    </a>
+</nav>
+
+</body>
+</html>

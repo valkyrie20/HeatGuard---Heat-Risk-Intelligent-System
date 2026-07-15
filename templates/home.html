@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page">
+
+    <div class="page-header">
+        <p class="label">Sunday · 13 July · Shift 06:00 — 18:00</p>
+        <h1>Stay safe under the sun, Ahmed</h1>
+        <p>Personalized heat exposure guidance for your shift today.</p>
+    </div>
+
+    <div class="stat-row">
+        <div class="stat-card">
+            <div class="label">☀️ WBGT NOW</div>
+            <div class="value">28.3°C</div>
+        </div>
+        <div class="stat-card">
+            <div class="label">⚡ EXPOSURE TODAY</div>
+            <div class="value">4h 12m</div>
+        </div>
+        <div class="stat-card">
+            <div class="label">🛡️ ACCLIMATIZATION</div>
+            <div class="value">Day 4/14</div>
+        </div>
+        <div class="stat-card">
+            <div class="label">👥 CREW ON SITE</div>
+            <div class="value">4 active</div>
+        </div>
+    </div>
+
+    <div class="two-col">
+        <div>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <p style="color: #888; font-size: 14px;">Good afternoon</p>
+                        <h2 style="margin: 0;">Ahmed</h2>
+                    </div>
+                    <span style="background: #1a0a0a; color: #ef4444; font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid #7f1d1d;">● Live</span>
+                </div>
+
+                <div style="display: flex; justify-content: center; margin: 20px 0;">
+                    <div style="position: relative; width: 180px; height: 180px;">
+                        <svg width="180" height="180" viewBox="0 0 180 180">
+                            <circle cx="90" cy="90" r="75" fill="none" stroke="#1e1e2e" stroke-width="14"/>
+                            <circle cx="90" cy="90" r="75" fill="none" stroke="#ef4444" stroke-width="14"
+                                stroke-dasharray="471" stroke-dashoffset="118"
+                                stroke-linecap="round" transform="rotate(-90 90 90)"/>
+                        </svg>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <p style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px;">HEAT RISK</p>
+                            <p style="font-size: 42px; font-weight: 700; color: #ef4444; line-height: 1;">78</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px;">
+                    <div style="background: #0d0d14; border-radius: 10px; padding: 14px; border: 1px solid #1e1e2e;">
+                        <p style="font-size: 11px; color: #666; margin-bottom: 6px;">SAFE EXPOSURE LEFT</p>
+                        <p style="font-size: 22px; font-weight: 700; color: #60a5fa;">12 min</p>
+                    </div>
+                    <div style="background: #0d0d14; border-radius: 10px; padding: 14px; border: 1px solid #1e1e2e;">
+                        <p style="font-size: 11px; color: #666; margin-bottom: 6px;">WORK-TO-REST</p>
+                        <p style="font-size: 22px; font-weight: 700; color: #60a5fa;">25:35</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-banner">
+                ⚠️ Outdoor work restricted 10:00–15:30 today
+            </div>
+
+            <div class="card">
+                <div class="card-label">🌡️ LIVE ENVIRONMENT <span style="margin-left: auto; color: #888; font-size: 12px;">Doha, Industrial Area</span></div>
+                <div class="env-grid">
+                    <div class="env-card">
+                        <div class="label">🌡️ Temp</div>
+                        <div class="value" style="color: #ef4444;">42°C</div>
+                    </div>
+                    <div class="env-card">
+                        <div class="label">💧 Humidity</div>
+                        <div class="value" style="color: #60a5fa;">58%</div>
+                    </div>
+                    <div class="env-card">
+                        <div class="label">☀️ UV Index</div>
+                        <div class="value" style="color: #f59e0b;">11</div>
+                    </div>
+                    <div class="env-card">
+                        <div class="label">💨 Wind</div>
+                        <div class="value">12 km/h</div>
+                    </div>
+                    <div class="env-card">
+                        <div class="label">🌫️ AQI</div>
+                        <div class="value" style="color: #f59e0b;">78</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-label">Today's recommendations</div>
+                <div class="rec-item">👕 Light, loose, long-sleeve clothing</div>
+                <div class="rec-item">💧 Drink 250ml every 20 min</div>
+                <div class="rec-item">📍 Nearest water tap: 80m</div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <a href="/map" class="btn btn-primary">🗺️ Cool route</a>
+                <a href="/emergency" class="btn btn-danger">📞 Emergency</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="card">
+                <div class="card-label">🕐 SHIFT SCHEDULE</div>
+                <div class="shift-item shift-safe">
+                    <span>06:00 — 09:30</span>
+                    <span>Outdoor work</span>
+                </div>
+                <div class="shift-item shift-break">
+                    <span>09:30 — 10:00</span>
+                    <span>Shaded break</span>
+                </div>
+                <div class="shift-item shift-restricted">
+                    <span>10:00 — 15:30</span>
+                    <span>Restricted</span>
+                </div>
+                <div class="shift-item shift-work">
+                    <span>15:30 — 18:00</span>
+                    <span>Outdoor work</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-label">🛡️ 14-DAY PLAN</div>
+                <h2 style="font-size: 16px; margin-bottom: 12px;">Acclimatization</h2>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #60a5fa;"></div>
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #60a5fa;"></div>
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #60a5fa;"></div>
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #60a5fa;"></div>
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #1e1e2e;"></div>
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #1e1e2e;"></div>
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #1e1e2e;"></div>
+                </div>
+                <p style="font-size: 13px; color: #666;">Increase daily exposure by ~20% until Day 14. Your body's cooling system is adapting well.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-label">💡 GUIDANCE</div>
+                <h2 style="font-size: 16px; margin-bottom: 14px;">Today's safety tips</h2>
+                <div class="rec-item">☀️ Wear a wide-brim hat and UV-blocking sunglasses</div>
+                <div class="rec-item">💨 Take breaks in shaded, ventilated areas every 25 min</div>
+                <div class="rec-item">🌡️ Pre-cool wrists and neck with a cold towel before shift</div>
+                <div class="rec-item">☕ Avoid caffeine and sugary drinks — they dehydrate</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
