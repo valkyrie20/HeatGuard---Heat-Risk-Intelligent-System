@@ -1,170 +1,133 @@
 {% extends "base.html" %}
-
 {% block content %}
+
 <div class="page">
 
-    <div class="page-header">
-        <p class="label">Fluid Balance</p>
-        <h1>Hydration tracker</h1>
-        <p>Log every sip and stay ahead of dehydration during your shift.</p>
+    <div style="margin-bottom:24px;">
+        <p style="font-size:11px; color:#60a5fa; text-transform:uppercase; letter-spacing:1.5px; font-weight:600; margin-bottom:6px;">FLUID BALANCE</p>
+        <h1 style="font-size:30px; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px;">Hydration tracker</h1>
+        <p style="font-size:14px; color:#555;">Log every sip and stay ahead of dehydration during your shift.</p>
     </div>
 
-    <div class="stat-row">
-        <div class="stat-card">
-            <span class="label">💧 TODAY</span>
-            <div class="value">2.1 L</div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px;">
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">TODAY</p>
+            <p id="today-display" style="font-size:24px; font-weight:700; color:#22d3ee;">2.1 L</p>
         </div>
-        <div class="stat-card">
-            <span class="label">🎯 GOAL</span>
-            <div class="value">3.5 L</div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">GOAL</p>
+            <p style="font-size:24px; font-weight:700;">3.5 L</p>
         </div>
-        <div class="stat-card">
-            <span class="label">⚡ ELECTROLYTE</span>
-            <div class="value">Due</div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">ELECTROLYTE</p>
+            <p style="font-size:24px; font-weight:700; color:#f59e0b;">Due</p>
         </div>
-        <div class="stat-card">
-            <span class="label">🔥 SWEAT RATE</span>
-            <div class="value">1.1 L/h</div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">SWEAT RATE</p>
+            <p style="font-size:24px; font-weight:700;">1.1 L/h</p>
         </div>
     </div>
 
-    <div class="two-col">
+    <div style="display:grid; grid-template-columns:1fr 320px; gap:16px; align-items:start;">
         <div>
-            <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="margin: 0;">Hydration tracker</h2>
-                </div>
-
-                <div style="display: flex; justify-content: center; margin: 20px 0;">
-                    <div style="position: relative; width: 200px; height: 200px;">
-                        <svg width="200" height="200" viewBox="0 0 200 200">
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:24px; margin-bottom:14px;">
+                <div style="display:flex; justify-content:center; margin-bottom:24px;">
+                    <div style="position:relative; width:200px; height:200px;">
+                        <svg width="200" height="200" viewBox="0 0 200 200" id="hydration-svg">
                             <circle cx="100" cy="100" r="85" fill="none" stroke="#1e1e2e" stroke-width="14"/>
-                            <circle cx="100" cy="100" r="85" fill="none" stroke="#22d3ee" stroke-width="14"
+                            <circle id="hydration-circle" cx="100" cy="100" r="85" fill="none" stroke="#22d3ee" stroke-width="14"
                                 stroke-dasharray="534" stroke-dashoffset="214"
-                                stroke-linecap="round" transform="rotate(-90 100 100)"/>
+                                stroke-linecap="round" transform="rotate(-90 100 100)"
+                                style="transition: stroke-dashoffset 0.5s ease;"/>
                         </svg>
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                            <p style="font-size: 32px; font-weight: 700;">2.1L</p>
-                            <p style="font-size: 13px; color: #555;">of 3.5L</p>
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+                            <p id="circle-value" style="font-size:32px; font-weight:700; color:#22d3ee;">2.1L</p>
+                            <p style="font-size:13px; color:#555;">of 3.5L</p>
                         </div>
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
-                    <div style="background: #0d0d14; border-radius: 10px; padding: 14px; border: 1px solid #1e1e2e;">
-                        <p style="font-size: 11px; color: #555; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Next reminder</p>
-                        <p style="font-size: 22px; font-weight: 700; color: #22d3ee;">14:45</p>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px;">
+                    <button onclick="logWater(250)" style="background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; border-radius:10px; padding:12px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">+250ml</button>
+                    <button onclick="logWater(500)" style="background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; border-radius:10px; padding:12px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">+500ml</button>
+                    <button onclick="logWater(750)" style="background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; border-radius:10px; padding:12px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">+750ml</button>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; font-weight:600;">NEXT REMINDER</p>
+                        <p style="font-size:22px; font-weight:700; color:#22d3ee;">14:45</p>
                     </div>
-                    <div style="background: #0d0d14; border-radius: 10px; padding: 14px; border: 1px solid #1e1e2e;">
-                        <p style="font-size: 11px; color: #555; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Remaining</p>
-                        <p style="font-size: 22px; font-weight: 700; color: #22d3ee;">1.4L</p>
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; font-weight:600;">REMAINING</p>
+                        <p id="remaining-display" style="font-size:22px; font-weight:700; color:#22d3ee;">1.4L</p>
                     </div>
-                </div>
-
-                <div class="alert-banner alert-banner-warning" style="margin-bottom: 16px;">
-                    ⚡ Consider electrolytes — you've been exposed over 2 hrs
-                </div>
-
-                <button class="btn btn-primary">+ Log water intake</button>
-            </div>
-
-            <div class="card">
-                <div class="card-label">Today's log</div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #555;">08:00</span><span>500ml</span>
-                </div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #555;">09:30</span><span>250ml</span>
-                </div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #555;">11:15</span><span>500ml</span>
-                </div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #555;">13:00</span><span>850ml</span>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-label">📊 LAST 7 DAYS — Hydration trend</div>
-                <div style="display: flex; align-items: flex-end; gap: 10px; height: 120px; margin-bottom: 12px;">
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">3.4L</span>
-                        <div style="width: 100%; height: 80px; background: #f59e0b; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Mon</span>
-                    </div>
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">3.6L</span>
-                        <div style="width: 100%; height: 95px; background: #22d3ee; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Tue</span>
-                    </div>
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">3.1L</span>
-                        <div style="width: 100%; height: 70px; background: #f59e0b; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Wed</span>
-                    </div>
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">3.8L</span>
-                        <div style="width: 100%; height: 110px; background: #22d3ee; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Thu</span>
-                    </div>
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">2.9L</span>
-                        <div style="width: 100%; height: 60px; background: #f59e0b; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Fri</span>
-                    </div>
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">3.5L</span>
-                        <div style="width: 100%; height: 85px; background: #22d3ee; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Sat</span>
-                    </div>
-                    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                        <span style="font-size: 11px; color: #555;">2.1L</span>
-                        <div style="width: 100%; height: 40px; background: #f59e0b; border-radius: 6px 6px 0 0;"></div>
-                        <span style="font-size: 11px; color: #555;">Sun</span>
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                    <div style="background: #0d0d14; border-radius: 10px; padding: 12px; border: 1px solid #1e1e2e;">
-                        <p style="font-size: 11px; color: #555; margin-bottom: 4px;">Avg</p>
-                        <p style="font-size: 18px; font-weight: 700;">3.2L</p>
-                    </div>
-                    <div style="background: #0d0d14; border-radius: 10px; padding: 12px; border: 1px solid #1e1e2e;">
-                        <p style="font-size: 11px; color: #555; margin-bottom: 4px;">Goal hit</p>
-                        <p style="font-size: 18px; font-weight: 700;">4 / 7</p>
-                    </div>
-                    <div style="background: #0d0d14; border-radius: 10px; padding: 12px; border: 1px solid #1e1e2e;">
-                        <p style="font-size: 11px; color: #555; margin-bottom: 4px;">Streak</p>
-                        <p style="font-size: 18px; font-weight: 700;">2 days</p>
-                    </div>
+            <div style="background:#1a1200; border:1px solid #78350f; border-radius:12px; padding:13px 18px; margin-bottom:14px; display:flex; align-items:center; gap:10px; color:#f59e0b; font-size:13px;">
+                ⚡ Consider electrolytes — you've been exposed over 2 hours
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:24px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">TODAY'S LOG</p>
+                <div id="water-log">
+                    <div style="display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">08:00</span><span style="color:#ccc;">500ml</span></div>
+                    <div style="display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">09:30</span><span style="color:#ccc;">250ml</span></div>
+                    <div style="display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">11:15</span><span style="color:#ccc;">500ml</span></div>
+                    <div style="display:flex; justify-content:space-between; padding:11px 0; font-size:13px;"><span style="color:#555;">13:00</span><span style="color:#ccc;">850ml</span></div>
                 </div>
             </div>
         </div>
 
         <div>
-            <div class="card">
-                <div class="card-label">⚡ BALANCE — Electrolytes today</div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #f59e0b; font-weight: 600;">Sodium</span><span>1500 mg</span>
-                </div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #22c55e; font-weight: 600;">Potassium</span><span>900 mg</span>
-                </div>
-                <div class="rec-item" style="justify-content: space-between;">
-                    <span style="color: #22d3ee; font-weight: 600;">Magnesium</span><span>220 mg</span>
-                </div>
-                <div style="background: #0d0d14; border-radius: 10px; padding: 14px; border: 1px solid #1e1e2e; margin-top: 12px;">
-                    <p style="font-size: 13px; color: #888;">After 2 hrs of heat exposure, add an oral rehydration salt sachet to your next 500ml refill.</p>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">ELECTROLYTES TODAY</p>
+                <div style="display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#f59e0b; font-weight:500;">Sodium</span><span style="color:#ccc;">1500 mg</span></div>
+                <div style="display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#22c55e; font-weight:500;">Potassium</span><span style="color:#ccc;">900 mg</span></div>
+                <div style="display:flex; justify-content:space-between; padding:11px 0; font-size:13px;"><span style="color:#22d3ee; font-weight:500;">Magnesium</span><span style="color:#ccc;">220 mg</span></div>
+                <div style="background:#0d0d14; border-radius:10px; padding:12px; border:1px solid #1e1e2e; margin-top:12px;">
+                    <p style="font-size:12px; color:#666; line-height:1.6;">After 2 hrs of heat exposure, add an oral rehydration salt sachet to your next 500ml refill.</p>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-label">💡 BEST PRACTICES — Hydration playbook</div>
-                <div class="rec-item">💧 Sip early, sip often — don't wait until thirsty</div>
-                <div class="rec-item">❄️ Keep water bottle 10–15°C, not ice-cold</div>
-                <div class="rec-item">☕ Cut caffeine after 11:00 to preserve fluid balance</div>
-                <div class="rec-item">🟡 Pale-straw urine means you're properly hydrated</div>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">HYDRATION PLAYBOOK</p>
+                <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#bbb;">Sip early, sip often — don't wait until thirsty</div>
+                <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#bbb;">Keep water bottle 10–15°C, not ice-cold</div>
+                <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#bbb;">Cut caffeine after 11:00 to preserve fluid balance</div>
+                <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; font-size:13px; color:#bbb;">Pale-straw urine means you're properly hydrated</div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    let consumed = 2100;
+    const goal = 3500;
+
+    function logWater(amount) {
+        consumed = Math.min(consumed + amount, goal);
+        
+        const litres = (consumed / 1000).toFixed(1);
+        const remaining = Math.max((goal - consumed) / 1000, 0).toFixed(1);
+        
+        document.getElementById('today-display').textContent = litres + ' L';
+        document.getElementById('circle-value').textContent = litres + 'L';
+        document.getElementById('remaining-display').textContent = remaining + 'L';
+        
+        const circumference = 2 * Math.PI * 85;
+        const offset = circumference * (1 - consumed / goal);
+        document.getElementById('hydration-circle').style.strokeDashoffset = offset;
+
+        const now = new Date();
+        const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+        const log = document.getElementById('water-log');
+        const entry = document.createElement('div');
+        entry.style = 'display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px;';
+        entry.innerHTML = '<span style="color:#555;">' + time + '</span><span style="color:#22d3ee;">+' + amount + 'ml</span>';
+        log.appendChild(entry);
+    }
+</script>
+
 {% endblock %}

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page">
+
+    <div style="margin-bottom:24px;">
+        <p style="font-size:11px; color:#60a5fa; text-transform:uppercase; letter-spacing:1.5px; font-weight:600; margin-bottom:6px;">WORKER PROFILE</p>
+        <h1 style="font-size:30px; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px;">Ahmed Al-Kuwari</h1>
+        <p style="font-size:14px; color:#555;">Construction worker · Doha, Qatar</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:320px 1fr; gap:16px; align-items:start;">
+
+        <div>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:24px; margin-bottom:14px; text-align:center;">
+                <div style="width:72px; height:72px; border-radius:50%; background:#1e3a5f; color:#60a5fa; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; margin:0 auto 14px;">AK</div>
+                <p style="font-size:17px; font-weight:600; margin-bottom:4px;">Ahmed Al-Kuwari</p>
+                <p style="font-size:13px; color:#555; margin-bottom:12px;">Construction worker</p>
+                <span style="background:#0a2a0a; color:#22c55e; font-size:11px; padding:4px 12px; border-radius:20px; border:1px solid #166534; font-weight:500;">Heat-Safety Certified</span>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">PERSONAL DETAILS</p>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">Age</span><span style="color:#ccc;">34</span></div>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">Weight</span><span style="color:#ccc;">78 kg</span></div>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">Height</span><span style="color:#ccc;">175 cm</span></div>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">Gender</span><span style="color:#ccc;">Male</span></div>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; font-size:13px;"><span style="color:#555;">Occupation</span><span style="color:#ccc;">Construction</span></div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">EMERGENCY CONTACT</p>
+                <p style="font-size:14px; font-weight:600; margin-bottom:4px;">Mohammed Al-Kuwari</p>
+                <p style="font-size:13px; color:#555; margin-bottom:12px;">+974 5555 1234</p>
+                <a href="tel:+97455551234" style="display:flex; align-items:center; justify-content:center; padding:10px; border-radius:8px; font-size:13px; font-weight:500; background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; text-decoration:none;">Call now</a>
+            </div>
+        </div>
+
+        <div>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">HEAT ACCLIMATIZATION</p>
+                <div style="display:flex; gap:8px; margin-bottom:14px;">
+                    <button onclick="setAcclimatization('new', this)" style="flex:1; padding:10px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid #1e1e2e; background:#13131f; color:#555; font-family:'Poppins',sans-serif;">New</button>
+                    <button onclick="setAcclimatization('partial', this)" id="acclim-partial" style="flex:1; padding:10px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid #2563eb44; background:#1e3a5f; color:#60a5fa; font-family:'Poppins',sans-serif;">Partial</button>
+                    <button onclick="setAcclimatization('full', this)" style="flex:1; padding:10px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid #1e1e2e; background:#13131f; color:#555; font-family:'Poppins',sans-serif;">Full</button>
+                </div>
+                <p style="font-size:12px; color:#666; line-height:1.6;" id="acclim-desc">Partially acclimatized — Day 4 of 14. Your body is adapting but remains at elevated risk. +15% added to your risk score.</p>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">MEDICAL CONDITIONS</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;">
+                    <span style="color:#ccc;">Hypertension</span>
+                    <span style="background:#1a0a00; color:#f59e0b; font-size:11px; padding:3px 10px; border-radius:20px; border:1px solid #78350f; font-weight:500;">Yes</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;">
+                    <span style="color:#ccc;">Diabetes</span>
+                    <span style="color:#555; font-size:13px;">No</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;">
+                    <span style="color:#ccc;">Cardiovascular disease</span>
+                    <span style="color:#555; font-size:13px;">No</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;">
+                    <span style="color:#ccc;">Previous heat illness</span>
+                    <span style="background:#1a0808; color:#f87171; font-size:11px; padding:3px 10px; border-radius:20px; border:1px solid #7f1d1d; font-weight:500;">Yes</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; font-size:13px;">
+                    <span style="color:#ccc;">Asthma</span>
+                    <span style="color:#555; font-size:13px;">No</span>
+                </div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">PROTECTIVE EQUIPMENT</p>
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                    <span style="background:#0a2a0a; color:#22c55e; font-size:12px; padding:5px 12px; border-radius:20px; border:1px solid #166534;">Hard hat</span>
+                    <span style="background:#0a2a0a; color:#22c55e; font-size:12px; padding:5px 12px; border-radius:20px; border:1px solid #166534;">Safety vest</span>
+                    <span style="background:#0a2a0a; color:#22c55e; font-size:12px; padding:5px 12px; border-radius:20px; border:1px solid #166534;">Safety boots</span>
+                    <span style="background:#0a2a0a; color:#22c55e; font-size:12px; padding:5px 12px; border-radius:20px; border:1px solid #166534;">UV sunglasses</span>
+                    <span style="background:#1a1a22; color:#555; font-size:12px; padding:5px 12px; border-radius:20px; border:1px solid #1e1e2e;">Face mask</span>
+                    <span style="background:#1a1a22; color:#555; font-size:12px; padding:5px 12px; border-radius:20px; border:1px solid #1e1e2e;">Gloves</span>
+                </div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">PREFERENCES</p>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">Language</span><span style="color:#ccc;">English</span></div>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #1e1e2e; font-size:13px;"><span style="color:#555;">Units</span><span style="color:#ccc;">°C / kg</span></div>
+                <div style="display:flex; justify-content:space-between; padding:10px 0; font-size:13px;"><span style="color:#555;">Notifications</span><span style="color:#22c55e;">On</span></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function setAcclimatization(level, btn) {
+    const buttons = btn.parentElement.querySelectorAll('button');
+    buttons.forEach(b => {
+        b.style.background = '#13131f';
+        b.style.color = '#555';
+        b.style.borderColor = '#1e1e2e';
+    });
+    btn.style.background = '#1e3a5f';
+    btn.style.color = '#60a5fa';
+    btn.style.borderColor = '#2563eb44';
+
+    const descriptions = {
+        'new': 'New to hot climate — Days 1–4. Your body has not yet adapted to the heat. +30% added to your risk score. Extra caution required.',
+        'partial': 'Partially acclimatized — Day 4 of 14. Your body is adapting but remains at elevated risk. +15% added to your risk score.',
+        'full': 'Fully acclimatized — Day 14+. Your body has adapted well to the heat. Standard risk score applies.'
+    };
+    document.getElementById('acclim-desc').textContent = descriptions[level];
+}
+</script>
+
+{% endblock %}

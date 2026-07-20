@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page">
+
+    <div style="margin-bottom:24px;">
+        <p style="font-size:11px; color:#ef4444; text-transform:uppercase; letter-spacing:1.5px; font-weight:600; margin-bottom:6px;">CRITICAL RESPONSE</p>
+        <h1 style="font-size:30px; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px;">Emergency heat alert</h1>
+        <p style="font-size:14px; color:#555;">If you feel unwell, follow these steps and call for help immediately.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px;">
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#ef4444; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">ALERT LEVEL</p>
+            <p style="font-size:24px; font-weight:700; color:#ef4444;">Critical</p>
+        </div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">HEART RATE</p>
+            <p style="font-size:24px; font-weight:700; color:#ef4444;">118 bpm</p>
+        </div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">NEAREST MEDIC</p>
+            <p style="font-size:24px; font-weight:700;">45 m</p>
+        </div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">RESPONSE ETA</p>
+            <p style="font-size:24px; font-weight:700;">6 min</p>
+        </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 320px; gap:16px; align-items:start;">
+        <div>
+            <div style="background:#180808; border:1px solid #3a1010; border-radius:14px; padding:24px; margin-bottom:14px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+                    <div style="width:40px; height:40px; border-radius:50%; background:#2a0a0a; border:1px solid #7f1d1d; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">⚠️</div>
+                    <div>
+                        <p style="font-size:15px; font-weight:600; color:#ef4444; margin-bottom:2px;">Emergency heat alert</p>
+                        <p style="font-size:12px; color:#888;">Follow these steps if you feel unwell</p>
+                    </div>
+                </div>
+
+                <div style="background:#130505; border-radius:10px; padding:18px;">
+                    <p style="font-size:10px; color:#888; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">Immediate steps</p>
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                        <div style="min-width:28px; height:28px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:white;">1</div>
+                        <p style="font-size:14px; color:#ccc;">Move to shade or a cool area immediately</p>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                        <div style="min-width:28px; height:28px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:white;">2</div>
+                        <p style="font-size:14px; color:#ccc;">Drink water slowly — 250ml immediately</p>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                        <div style="min-width:28px; height:28px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:white;">3</div>
+                        <p style="font-size:14px; color:#ccc;">Loosen or remove heavy clothing</p>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div style="min-width:28px; height:28px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:white;">4</div>
+                        <p style="font-size:14px; color:#ccc;">Notify your supervisor now</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:24px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">CHECK SYMPTOMS</p>
+                <div id="symptom-list">
+                    <div onclick="toggleSymptom(this)" style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc; cursor:pointer;">
+                        <div style="width:18px; height:18px; border-radius:50%; border:1.5px solid #444; flex-shrink:0;"></div>
+                        Heavy sweating or stopped sweating
+                    </div>
+                    <div onclick="toggleSymptom(this)" style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc; cursor:pointer;">
+                        <div style="width:18px; height:18px; border-radius:50%; border:1.5px solid #444; flex-shrink:0;"></div>
+                        Dizziness or confusion
+                    </div>
+                    <div onclick="toggleSymptom(this)" style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc; cursor:pointer;">
+                        <div style="width:18px; height:18px; border-radius:50%; border:1.5px solid #444; flex-shrink:0;"></div>
+                        Nausea or vomiting
+                    </div>
+                    <div onclick="toggleSymptom(this)" style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc; cursor:pointer;">
+                        <div style="width:18px; height:18px; border-radius:50%; border:1.5px solid #444; flex-shrink:0;"></div>
+                        Rapid or weak pulse
+                    </div>
+                    <div onclick="toggleSymptom(this)" style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc; cursor:pointer;">
+                        <div style="width:18px; height:18px; border-radius:50%; border:1.5px solid #444; flex-shrink:0;"></div>
+                        Hot, dry skin
+                    </div>
+                    <div onclick="toggleSymptom(this)" style="display:flex; align-items:center; gap:12px; padding:11px 0; font-size:13px; color:#ccc; cursor:pointer;">
+                        <div style="width:18px; height:18px; border-radius:50%; border:1.5px solid #444; flex-shrink:0;"></div>
+                        Loss of consciousness
+                    </div>
+                </div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px; display:flex; align-items:center; gap:10px;">
+                <span style="font-size:16px;">📍</span>
+                <p style="font-size:13px; color:#666;">Your location: Industrial Area, Street 14, Doha</p>
+            </div>
+
+            <div style="display:flex; gap:10px;">
+                <a href="tel:+97455551234" style="display:flex; align-items:center; justify-content:center; padding:12px 20px; border-radius:10px; font-size:13px; font-weight:500; background:#180808; color:#f87171; border:1px solid #3a1010; text-decoration:none; flex:1;">📞 Call emergency contact</a>
+                <a href="#" style="display:flex; align-items:center; justify-content:center; padding:12px 20px; border-radius:10px; font-size:13px; font-weight:500; background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; text-decoration:none; flex:1;">👤 Notify supervisor</a>
+            </div>
+        </div>
+
+        <div>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">ONE TAP — EMERGENCY CONTACTS</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Site Supervisor</p>
+                        <p style="font-size:12px; color:#555;">Mohammed Al-Kuwari</p>
+                    </div>
+                    <a href="tel:+97455551234" style="background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; padding:6px 14px; border-radius:8px; font-size:12px; font-weight:600; text-decoration:none;">Call</a>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Site Medic</p>
+                        <p style="font-size:12px; color:#555;">First-aid post — Gate 3</p>
+                    </div>
+                    <a href="#" style="background:#0a2a0a; color:#22c55e; border:1px solid #166534; padding:6px 14px; border-radius:8px; font-size:12px; font-weight:600; text-decoration:none;">Call</a>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">National Emergency</p>
+                        <p style="font-size:12px; color:#555;">Ambulance & fire</p>
+                    </div>
+                    <a href="tel:999" style="background:#180808; color:#f87171; border:1px solid #3a1010; padding:6px 14px; border-radius:8px; font-size:12px; font-weight:600; text-decoration:none;">Call</a>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Company Hotline</p>
+                        <p style="font-size:12px; color:#555;">HSE 24/7</p>
+                    </div>
+                    <a href="#" style="background:#181000; color:#fbbf24; border:1px solid #78350f; padding:6px 14px; border-radius:8px; font-size:12px; font-weight:600; text-decoration:none;">Call</a>
+                </div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">LIVE VITALS</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:4px; font-weight:600; text-transform:uppercase;">Heart rate</p>
+                        <p style="font-size:20px; font-weight:700; color:#ef4444;">118 bpm</p>
+                        <p style="font-size:11px; color:#ef4444;">Elevated</p>
+                    </div>
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:4px; font-weight:600; text-transform:uppercase;">Skin temp</p>
+                        <p style="font-size:20px; font-weight:700; color:#f59e0b;">37.9°C</p>
+                        <p style="font-size:11px; color:#f59e0b;">High</p>
+                    </div>
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:4px; font-weight:600; text-transform:uppercase;">Sweat loss</p>
+                        <p style="font-size:20px; font-weight:700;">1.1 L/h</p>
+                    </div>
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:4px; font-weight:600; text-transform:uppercase;">SpO₂</p>
+                        <p style="font-size:20px; font-weight:700; color:#22c55e;">97%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">NEARBY — COOLING & MEDICAL</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Site Cool Room A</p>
+                        <p style="font-size:12px; color:#555;">AC break room</p>
+                    </div>
+                    <span style="color:#22c55e; font-size:13px; font-weight:600;">45 m</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Gate 3 Shaded Bay</p>
+                        <p style="font-size:12px; color:#555;">Shade + water</p>
+                    </div>
+                    <span style="color:#22c55e; font-size:13px; font-weight:600;">120 m</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Al Wakrah Clinic</p>
+                        <p style="font-size:12px; color:#555;">Medical</p>
+                    </div>
+                    <span style="color:#f59e0b; font-size:13px; font-weight:600;">1.8 km</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Hamad General Hospital</p>
+                        <p style="font-size:12px; color:#555;">Hospital</p>
+                    </div>
+                    <span style="color:#ef4444; font-size:13px; font-weight:600;">6.2 km</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleSymptom(el) {
+    const dot = el.querySelector('div');
+    const isChecked = dot.style.background === 'rgb(239, 68, 68)';
+    if (isChecked) {
+        dot.style.background = 'transparent';
+        dot.style.borderColor = '#444';
+        el.style.color = '#ccc';
+    } else {
+        dot.style.background = '#ef4444';
+        dot.style.borderColor = '#ef4444';
+        el.style.color = '#f87171';
+    }
+}
+</script>
+
+{% endblock %}

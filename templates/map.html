@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    #map { height: 500px; border-radius: 14px; overflow: hidden; }
+    .leaflet-popup-content-wrapper {
+        background: #13131f;
+        color: #fff;
+        border: 1px solid #1e1e2e;
+        border-radius: 10px;
+    }
+    .leaflet-popup-tip { background: #13131f; }
+</style>
+
+<div class="page">
+
+    <div style="margin-bottom:24px;">
+        <p style="font-size:11px; color:#60a5fa; text-transform:uppercase; letter-spacing:1.5px; font-weight:600; margin-bottom:6px;">NAVIGATION</p>
+        <h1 style="font-size:30px; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px;">Cool route finder</h1>
+        <p style="font-size:14px; color:#555;">Find the coolest path and avoid heat hotspots in Doha.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px;">
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">TEMPERATURE</p>
+            <p style="font-size:24px; font-weight:700; color:#ef4444;">{{ w.temp }}°C</p>
+        </div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">WBGT</p>
+            <p style="font-size:24px; font-weight:700; color:#f59e0b;">{{ w.wbgt }}°C</p>
+        </div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">UV INDEX</p>
+            <p style="font-size:24px; font-weight:700; color:#f59e0b;">{{ w.uv }}</p>
+        </div>
+        <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:12px; padding:20px;">
+            <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:10px;">WIND</p>
+            <p style="font-size:24px; font-weight:700;">{{ w.wind }} km/h</p>
+        </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 320px; gap:16px; align-items:start;">
+        <div>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:4px; margin-bottom:14px;">
+                <div id="map"></div>
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">NEARBY — COOLING & MEDICAL POINTS</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Site Cool Room A</p>
+                        <p style="font-size:12px; color:#555;">AC break room</p>
+                    </div>
+                    <span style="color:#22c55e; font-size:13px; font-weight:600;">45 m</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Gate 3 Shaded Bay</p>
+                        <p style="font-size:12px; color:#555;">Shade + water</p>
+                    </div>
+                    <span style="color:#22c55e; font-size:13px; font-weight:600;">120 m</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #1e1e2e;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Al Wakrah Clinic</p>
+                        <p style="font-size:12px; color:#555;">Medical</p>
+                    </div>
+                    <span style="color:#f59e0b; font-size:13px; font-weight:600;">1.8 km</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 0;">
+                    <div>
+                        <p style="font-size:13px; font-weight:600; margin-bottom:2px;">Hamad General Hospital</p>
+                        <p style="font-size:12px; color:#555;">Hospital</p>
+                    </div>
+                    <span style="color:#ef4444; font-size:13px; font-weight:600;">6.2 km</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px; margin-bottom:14px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">LOCATIONS</p>
+                <div style="margin-bottom:12px;">
+                    <p style="font-size:11px; color:#555; margin-bottom:6px; font-weight:600;">HOME ADDRESS</p>
+                    <div style="background:#0d0d14; border:1px solid #1e1e2e; border-radius:8px; padding:10px; font-size:13px; color:#ccc;">Al Sadd, Doha, Qatar</div>
+                </div>
+                <div style="margin-bottom:16px;">
+                    <p style="font-size:11px; color:#555; margin-bottom:6px; font-weight:600;">WORKPLACE ADDRESS</p>
+                    <div style="background:#0d0d14; border:1px solid #1e1e2e; border-radius:8px; padding:10px; font-size:13px; color:#ccc;">Industrial Area, Doha, Qatar</div>
+                </div>
+                <a href="#" onclick="showRoute()" style="display:flex; align-items:center; justify-content:center; padding:11px 20px; border-radius:10px; font-size:13px; font-weight:500; background:#1e3a5f; color:#60a5fa; border:1px solid #2563eb44; text-decoration:none;">Show cool route</a>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px;">
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:4px; font-weight:600; text-transform:uppercase;">Distance</p>
+                        <p style="font-size:20px; font-weight:700;">18.0 km</p>
+                    </div>
+                    <div style="background:#0d0d14; border-radius:10px; padding:14px; border:1px solid #1e1e2e;">
+                        <p style="font-size:10px; color:#555; margin-bottom:4px; font-weight:600; text-transform:uppercase;">Travel time</p>
+                        <p style="font-size:20px; font-weight:700;">19 min</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background:#1a1200; border:1px solid #78350f; border-radius:12px; padding:13px 18px; margin-bottom:14px; color:#f59e0b; font-size:13px;">
+                ⚠️ Plan your commute before 10:00 or after 15:30 for lowest heat exposure.
+            </div>
+
+            <div style="background:#13131f; border:1px solid #1e1e2e; border-radius:14px; padding:22px;">
+                <p style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:14px;">MAP LEGEND</p>
+                <div style="display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc;">
+                    <span style="width:12px; height:12px; border-radius:50%; background:#ef4444; opacity:0.7; display:inline-block; flex-shrink:0;"></span>Hot zone
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc;">
+                    <span style="width:12px; height:12px; border-radius:50%; background:#f59e0b; opacity:0.7; display:inline-block; flex-shrink:0;"></span>Warm zone
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc;">
+                    <span style="width:12px; height:12px; border-radius:50%; background:#22c55e; opacity:0.7; display:inline-block; flex-shrink:0;"></span>Cool zone
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #1e1e2e; font-size:13px; color:#ccc;">
+                    <span style="width:12px; height:12px; border-radius:50%; background:#22d3ee; display:inline-block; flex-shrink:0;"></span>Water tap
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; padding:9px 0; font-size:13px; color:#ccc;">
+                    <span style="width:12px; height:4px; background:#60a5fa; display:inline-block; flex-shrink:0;"></span>Cool route
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    const wbgt = {{ w.wbgt }};
+    const temp = {{ w.temp }};
+
+    const map = L.map('map').setView([25.2854, 51.5310], 13);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© OpenStreetMap © CARTO',
+        maxZoom: 19
+    }).addTo(map);
+
+    // Heat zones based on live WBGT
+    const heatColor = wbgt > 32.1 ? '#ef4444' : wbgt > 28 ? '#f59e0b' : '#22c55e';
+    const heatOpacity = wbgt > 32.1 ? 0.35 : 0.25;
+
+    // Industrial Area — hot zone (open, exposed)
+    L.circle([25.2411, 51.5638], {
+        color: '#ef4444', fillColor: '#ef4444',
+        fillOpacity: heatOpacity, opacity: 0, radius: 1200
+    }).addTo(map).bindPopup('<b style="color:#ef4444">Hot zone</b><br>Industrial Area<br>WBGT: ' + wbgt + '°C');
+
+    // West Bay — warm zone
+    L.circle([25.3218, 51.5322], {
+        color: '#f59e0b', fillColor: '#f59e0b',
+        fillOpacity: 0.2, opacity: 0, radius: 1000
+    }).addTo(map).bindPopup('<b style="color:#f59e0b">Warm zone</b><br>West Bay<br>Less exposed');
+
+    // Al Sadd — cooler zone (more shade, trees)
+    L.circle([25.2697, 51.5065], {
+        color: '#22c55e', fillColor: '#22c55e',
+        fillOpacity: 0.2, opacity: 0, radius: 800
+    }).addTo(map).bindPopup('<b style="color:#22c55e">Cool zone</b><br>Al Sadd<br>More shade available');
+
+    // Water tap markers
+    const waterIcon = L.divIcon({
+        html: '<div style="background:#22d3ee; width:12px; height:12px; border-radius:50%; border:2px solid white;"></div>',
+        iconSize: [12, 12], className: ''
+    });
+
+    L.marker([25.2420, 51.5650], {icon: waterIcon})
+        .addTo(map).bindPopup('<b>Site entrance tap</b><br>80m away');
+    L.marker([25.2435, 51.5625], {icon: waterIcon})
+        .addTo(map).bindPopup('<b>Rest area station</b><br>210m away');
+    L.marker([25.2697, 51.5065], {icon: waterIcon})
+        .addTo(map).bindPopup('<b>Al Sadd water point</b><br>Public tap');
+
+    // User location marker
+    const userIcon = L.divIcon({
+        html: '<div style="background:#60a5fa; width:14px; height:14px; border-radius:50%; border:3px solid white; box-shadow:0 0 8px #60a5fa;"></div>',
+        iconSize: [14, 14], className: ''
+    });
+
+    L.marker([25.2415, 51.5640], {icon: userIcon})
+        .addTo(map).bindPopup('<b>You are here</b><br>Industrial Area');
+
+    // Cool route line
+    let routeLine = null;
+
+    function showRoute() {
+        if (routeLine) { map.removeLayer(routeLine); routeLine = null; return; }
+        const route = [
+            [25.2415, 51.5640],
+            [25.2500, 51.5500],
+            [25.2600, 51.5300],
+            [25.2697, 51.5065]
+        ];
+        routeLine = L.polyline(route, {
+            color: '#60a5fa', weight: 4,
+            opacity: 0.8, dashArray: '8, 4'
+        }).addTo(map);
+        map.fitBounds(routeLine.getBounds(), {padding: [20, 20]});
+    }
+</script>
+
+{% endblock %}
